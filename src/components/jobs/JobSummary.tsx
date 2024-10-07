@@ -13,8 +13,6 @@ const Green = styled.span`
 `;
 
 const JobSummary = ({ career }: { career: career }): JSX.Element => {
-  console.log(career);
-
   const anSal = career.annual_salary.toFixed(2);
   const grossSal = career.annual_salary / 12;
   const fedTax = career.federalTax.toFixed(2);

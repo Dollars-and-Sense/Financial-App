@@ -17,7 +17,6 @@ export const createNewClass = (dispatch: any, data: any) => {
   api
     .createClass({ className, school })
     .then((res) => {
-      console.log(res);
       if (res.success)
         dispatch({ type: 'CREATE_CLASS', class: [{ c_id: res.class }] });
       else alert(res.message);
