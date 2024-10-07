@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -49,7 +49,7 @@ const Header = styled.div`
 
 const Modal = ({ text, close }: { text: any; close: any }): JSX.Element => (
   <Wrapper>
-    <ReactCSSTransitionGroup
+    <TransitionGroup
       transitionName="pop"
       transitionAppear={true}
       transitionAppearTimeout={500}
@@ -84,7 +84,7 @@ const Modal = ({ text, close }: { text: any; close: any }): JSX.Element => (
           </div>
         </div>
       </Modall>
-    </ReactCSSTransitionGroup>
+    </TransitionGroup>
   </Wrapper>
 );
 
