@@ -37,9 +37,6 @@ const Navbar = ({
   return (
     <div>
       <Nav className={showNav ? 'show' : 'hide'}>
-        <NavLink activeStyle={active} className="nav-item txt-md" to="/setting">
-          <Icon src={IconGear} alt="" />
-        </NavLink>
         <NavLink activeStyle={active} className="nav-item txt-md" to="/">
           <Icon src={Home} alt="" />
         </NavLink>
@@ -52,6 +49,9 @@ const Navbar = ({
         </NavLink>
         <NavLink activeStyle={active} className="nav-item txt-md" to="/classes">
           <Icon src={BackPack} alt="" />
+        </NavLink>
+        <NavLink activeStyle={active} className="nav-item txt-md" to="/setting">
+          <Icon src={IconGear} alt="" />
         </NavLink>
       </Nav>
     </div>
