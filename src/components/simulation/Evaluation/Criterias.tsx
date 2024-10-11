@@ -19,7 +19,7 @@ const evalOptions: Array<any> = [
     neg_message:
       'We noticed you spent more on your rent than the recommended amount.',
     other:
-      "Rent is a major expense in people's life. We recommend that you spend 20% to 25% of your income in rent.",
+      "Rent is a major expense in people's lives. We recommend that you spend 20% to 25% of your income in rent.",
   },
   {
     name: 'food',
