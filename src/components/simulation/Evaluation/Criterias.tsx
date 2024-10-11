@@ -78,7 +78,6 @@ const Criterias: FC<propsType> = ({ no, propVal }) => {
     // Because "transport" criteria has two positive messages
     if (no == 0 || no == 3) {
       pos_message = pos_message[propVal.pMsg];
-      console.log(pos_message);
     }
 
     setCriteriaVal({

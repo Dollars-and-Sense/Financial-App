@@ -24,7 +24,7 @@ const Spinner = ({ getJobDetail }: any): JSX.Element => {
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   }, []);
 
