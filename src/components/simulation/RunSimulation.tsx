@@ -218,7 +218,7 @@ const RunSimulation = (props: Props): JSX.Element => {
             {simStage === 'Booth-Selection' && (
               <div>
                 <UserInfo>
-                  Remaining Income:{' '}
+                  Remaining Monthly Income:{' '}
                   {myCareer.afterTaxMontlySalary
                     ? currentBalance.toFixed(2)
                     : ''}
