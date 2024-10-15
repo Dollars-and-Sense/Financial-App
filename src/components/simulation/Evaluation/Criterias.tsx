@@ -2,12 +2,12 @@ import React, { useState, useEffect, FC, ReactElement } from 'react';
 const evalOptions: Array<any> = [
   {
     name: 'balance',
-    show: 'Total Savings: ',
+    show: 'Total Montly Savings: ',
     pos_message: [
       'Good Job! Your total monthly expense was less than your income.',
       'Good Job! You saved some of your income. But your saving is still not in the recommended range.',
     ],
-    neg_message: 'We Noticed that you spent more than you earned.',
+    neg_message: 'We noticed that you spent more than you earned.',
 
     other:
       'We recommend that you always strive to save at least 20% of your monthly income. If you continuously spend more than you earn, you will end up in DEBT.',

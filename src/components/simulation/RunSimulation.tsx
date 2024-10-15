@@ -216,10 +216,14 @@ const RunSimulation = (props: Props): JSX.Element => {
               </>
             )}
             {simStage === 'Booth-Selection' && (
+              /**
+               * TODO: Add more instructional details: "Choose a booth. 
+               * You can only visit each booth one time." 
+               */
               <div>
                 <UserInfo>
                   Remaining Monthly Income:{' '}
-                  {myCareer.afterTaxMontlySalary
+                  ${myCareer.afterTaxMontlySalary
                     ? currentBalance.toFixed(2)
                     : ''}
                 </UserInfo>
