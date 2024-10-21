@@ -47,7 +47,7 @@ export interface career {
 
 const tempCareer = {
   annual_salary: 31137.600000000002,
-  education: 'HighSchool Diploma',
+  education: 'High School Diploma',
   federalTax: 389.22,
   hourlyRate: 16.2175,
   medicare: 36.327200000000005,
@@ -153,7 +153,7 @@ const RunSimulation = (props: Props): JSX.Element => {
           medicare: y * 0.014,
           stateTax: y * 0.033,
           insurance: y * 0.035,
-          education: 'Bachelor',
+          education: "Bachelor's",
           training,
           credit,
           afterTaxMontlySalary:
