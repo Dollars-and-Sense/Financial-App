@@ -4,7 +4,6 @@ export interface ClassState {class: any[], contentLoaded: boolean, error: boolea
 export function reducer(state: ClassState, action: Action): ClassState {
     switch (action.type) {
         case 'GET_CLASSES':
-            console.log(action.class)
             return {
                 class: action.class,
                 contentLoaded: true,

@@ -79,8 +79,6 @@ const BoothOption = ({
     // }
   }
 
-  console.log('LOWEST PRICE: ' + lowestprice);
-
   const showCostBreakdown = () => {
     return costBreakdown.map(
       (piece: string | { item: string; price: number }, i: number) => {

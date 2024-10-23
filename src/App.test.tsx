@@ -61,7 +61,7 @@ it(`Startpage Renders Correctly`, ()=>{
 
         el.find('.nav-item').at(0).simulate('click');
 
-        console.log(`Page is at ${window.location}`);
+        // console.log(`Page is at ${window.location}`);
       })
     })
 

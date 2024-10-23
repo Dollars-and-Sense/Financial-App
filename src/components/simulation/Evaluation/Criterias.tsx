@@ -19,7 +19,7 @@ const evalOptions: Array<any> = [
     neg_message:
       'We noticed you spent more on your rent than the recommended amount.',
     other:
-      "Rent is a major expense in people's life. We recommend tha you spend 20% to 25% of your income in rent.",
+      "Rent is a major expense in people's lives. We recommend that you spend 20% to 25% of your income in rent.",
   },
   {
     name: 'food',
@@ -40,7 +40,7 @@ const evalOptions: Array<any> = [
     neg_message:
       'Buying a brand new car for a first vehicle might not a great decision.',
     other:
-      "Vehicles depreciate in value which means that your vehicle's sale price will be lower today than it was yesterday. Generally, vehicles loose half of their value in 4 years. This means a brand new car you purchased in 2016 for $10,000 will be worth around $5,000 in 2020. Hence, buying a car that is atleast 4 years old is a good strategy for your first vehicle purchase .",
+      "Vehicles depreciate in value, which means that your vehicle's sale price will be lower today than it was yesterday. Generally, vehicles lose half of their value in 4 years. This means a brand new car you purchased in 2016 for $10,000 will be worth around $5,000 in 2020. Hence, buying a car that is at least 4 years old is a good strategy for your first vehicle purchase.",
   },
 ];
 
@@ -78,7 +78,6 @@ const Criterias: FC<propsType> = ({ no, propVal }) => {
     // Because "transport" criteria has two positive messages
     if (no == 0 || no == 3) {
       pos_message = pos_message[propVal.pMsg];
-      console.log(pos_message);
     }
 
     setCriteriaVal({

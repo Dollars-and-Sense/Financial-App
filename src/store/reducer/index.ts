@@ -17,7 +17,6 @@ const intialState = {
 export function rootReducer(state = intialState, action: action): any {
   switch (action.type) {
     case 'JOIN_CLASS':
-      console.log(action.code);
       return {
         ...intialState,
         class: [action.code],

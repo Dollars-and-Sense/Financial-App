@@ -40,7 +40,6 @@ const useBackendConnection = (stage: string) => {
   }, [selections]);
 
   useEffect(() => {
-    console.log(showInfoCard);
     if (qNum !== null) setLoading(false);
   }, [qNum, showInfoCard, selections]);
 
@@ -129,8 +128,6 @@ const TestController = (props: Props): JSX.Element => {
    * @param answer  user's selection
    */
   const Save = (qNumber: number, answer: string) => {
-    console.log(qNumber);
-
     storeSel(qNumber, parseInt(answer));
   };
 
