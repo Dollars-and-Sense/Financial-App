@@ -17,7 +17,7 @@ const Startpage = ({
   return (
     <>
       {
-        loggedin ? (
+        true ? (
           <div>
             <Wrapper>
               <>
