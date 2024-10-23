@@ -1,11 +1,9 @@
 import React, {
-  FormEvent,
-  MouseEvent,
   useEffect,
-  useRef,
   useState,
 } from 'react';
 import api from 'api';
+import './style.css';
 
 type props = {
   signUpUser: () => void;
@@ -139,6 +137,7 @@ const OrgLookup = ({
    */
   const [disableSubmit, setdisableSubmit] = useState<boolean>(true);
   const [askConfirmation, setAskConfirmation] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     // API call
@@ -165,15 +164,15 @@ const OrgLookup = ({
       });
   }, []);
 
-  /**
-   * Function to create dropdown options from organizations array
-   */
-  const getOptions = () => {
-    // let organizations = ['a', 'baaa', 'aac'];
-    return organizations.map((org, i) => {
-      return <option key={i}>{org}</option>;
-    });
+
+  const handleOptionClick = (option: any) => {
+    setSelectedOrganization(option);
+    setIsOpen(false);
   };
+
+
+  const toggleDropdown = () => setIsOpen(!isOpen);
+
 
   if (askConfirmation)
     return (
@@ -191,7 +190,7 @@ const OrgLookup = ({
             Enter your school/organization
           </div>
 
-          <input
+          {/* <input
             autoFocus
             placeholder={'Choose Orgnaization'}
             list="organizations"
@@ -209,10 +208,39 @@ const OrgLookup = ({
               setSelectedOrganization(val); // Update the selected organization
             }}
           />
-          <datalist id="organizations">{getOptions()}</datalist>
+          <datalist id="organizations">{getOptions()}</datalist> */}
+          <div className="dropdown-container">
+            <div className="custom-dropdown">
+              <div onClick={toggleDropdown} className="dropdown-toggle">
+                {selectedOrganization || 'Select an organization'}
+                <span className="dropdown-icon">
+                    {/* SVG Down Arrow Icon */}
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      width="16" 
+                      height="16" 
+                      fill="currentColor" 
+                      className="bi bi-caret-down-fill" 
+                      viewBox="0 0 16 16"
+                    > 
+                  <path d="M3.5 6h9l-4.5 4.5L3.5 6z"/>
+                </svg>
+              </span>
+            </div>
+      
+            {isOpen && (
+              <ul className="dropdown-menu">
+                {organizations.map((org, index) => (
+                  <li key={index} onClick={() => handleOptionClick(org)}>
+                    {org}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
 
           <button
-            className="yellow-button"
+            className="nextButton"
             disabled={disableSubmit}
             onClick={(e) => {
               e.preventDefault();
@@ -229,6 +257,7 @@ const OrgLookup = ({
           >
             Next
           </button>
+          </div>
         </form>
       </>
     );
