@@ -55,8 +55,9 @@ const Evaluation: FC<propsType> = ({ propVals, setStage }) => {
 
         // balance criteria
         let sp = vals.balance / vals.income;
-        if (vals.balance < 0)
-          info.push({ show: vals.balance, positive: false });
+        if (vals.balance < 0) {
+          info.push({ show: '-$' + Math.abs(Number(vals.balance.toFixed(2))), positive: false });
+        }
         else if (sp < savingTarget)
           info.push({
             show: (sp * 100).toFixed(2) + '%',
@@ -64,7 +65,7 @@ const Evaluation: FC<propsType> = ({ propVals, setStage }) => {
             pMsg: 1,
           });
         else {
-          info.push({ show: vals.balance, positive: true, pMsg: 0 });
+          info.push({ show: '$' + vals.balance.toFixed(2), positive: true, pMsg: 0 });
         }
 
         // Rent criteria
