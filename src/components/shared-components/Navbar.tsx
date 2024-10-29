@@ -37,7 +37,7 @@ const Navbar = ({
   return (
     <div>
       <Nav className={showNav ? 'show' : 'hide'}>
-        <NavLink activeStyle={active} className="nav-item txt-md" to="/">
+        <NavLink activeStyle={active} className="nav-item txt-md" to="/" >
           <Icon src={Home} alt="" />
         </NavLink>
         <NavLink
