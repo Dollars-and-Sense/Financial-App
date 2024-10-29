@@ -46,9 +46,6 @@ const Login = ({ loginUser }: { loginUser: any }): JSX.Element => {
         >
           {/* sets the users email to the input value */}
           
-          <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-            <img src={capitalOneLogo} alt="Capital One Logo" style={{ width: '100px' }} />
-          </div>
           <input
             className="login-input"
             placeholder={'Username or Email'}
