@@ -23,6 +23,17 @@ const Banner = styled.div`
   z-index: 0;
 `;
 
+const LogoContainer = styled.div`
+  grid-column: 4 / span 4;
+  grid-row: 2 / span 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  z-index: 1;
+  margin-bottom: 20px;
+`;
+
 //Sets the logo picture to the top left, z-index is 1 so it will be above the banner
 const Logo = styled.a`
   grid-column: 1 / span 1;
@@ -32,6 +43,7 @@ const Logo = styled.a`
   object-fit: contain;
   z-index: 1;
 `;
+
 
 //Sets the desc centered to the left of the login card, also sets the text color and font
 //  contains media queries so that it will be stacked above the login card on smaller screens
@@ -131,6 +143,7 @@ font-family: 'Capriola', sans-serif;
 `;
 
 export {
+  LogoContainer,
   Wrapper,
   Banner,
   Logo,
