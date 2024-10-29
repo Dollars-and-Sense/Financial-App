@@ -157,6 +157,7 @@ const OrgLookup = ({
   const handleOptionClick = (option: string) => {
     setSelectedOrganization(option);
     setSearchTerm(option);
+    setDisableSubmit(false);
     setIsOpen(false);
   };
 
@@ -193,7 +194,13 @@ const OrgLookup = ({
                 }}
                 onClick={toggleDropdown}
                 placeholder="Select an organization"
-                className="dropdown-toggle"
+                style={{
+                  border: 'none',
+                  outline: 'none',
+                  flex: 1,
+                  padding: '5px 10px',
+                  cursor: 'pointer'
+                }}
               />
               <span className="dropdown-icon" onClick={toggleDropdown}>
                 <svg 
