@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { IconGear, Home, Game, BackPack } from 'assets';
 import { NavLink } from 'react-router-dom';
+import './style.css';
 
 const Nav = styled.div`
   top: 0em;
@@ -37,22 +38,34 @@ const Navbar = ({
   return (
     <div>
       <Nav className={showNav ? 'show' : 'hide'}>
-        <NavLink activeStyle={active} className="nav-item txt-md" to="/">
-          <Icon src={Home} alt="" />
-        </NavLink>
-        <NavLink
-          activeStyle={active}
-          className="nav-item txt-md"
-          to="/simulation"
-        >
-          <Icon src={Game} alt="" />
-        </NavLink>
-        <NavLink activeStyle={active} className="nav-item txt-md" to="/classes">
-          <Icon src={BackPack} alt="" />
-        </NavLink>
-        <NavLink activeStyle={active} className="nav-item txt-md" to="/setting">
-          <Icon src={IconGear} alt="" />
-        </NavLink>
+        <div className="tooltip">
+          <NavLink activeStyle={active} className="nav-item txt-md" to="/">
+            <Icon src={Home} alt="" />
+          </NavLink>
+          <span className="tooltiptext">Home</span>
+        </div>
+        <div className="tooltip">
+          <NavLink
+            activeStyle={active}
+            className="nav-item txt-md"
+            to="/simulation"
+          >
+            <Icon src={Game} alt="" />
+          </NavLink>
+          <span className="tooltiptext">Simulation</span>
+        </div>
+        <div className="tooltip">
+          <NavLink activeStyle={active} className="nav-item txt-md" to="/classes">
+            <Icon src={BackPack} alt="" />
+          </NavLink>
+          <span className="tooltiptext">Classes</span>
+        </div>
+        <div className="tooltip">
+          <NavLink activeStyle={active} className="nav-item txt-md" to="/setting">
+            <Icon src={IconGear} alt="" />
+          </NavLink>
+          <span className="tooltiptext">Settings</span>
+        </div>
       </Nav>
     </div>
   );
