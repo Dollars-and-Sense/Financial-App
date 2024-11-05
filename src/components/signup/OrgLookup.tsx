@@ -1,11 +1,9 @@
 import React, {
-  FormEvent,
-  MouseEvent,
   useEffect,
-  useRef,
   useState,
 } from 'react';
 import api from 'api';
+import './style.css';
 
 type props = {
   signUpUser: () => void;
@@ -129,19 +127,15 @@ const OrgLookup = ({
   setSelectedOrganization,
   selectedOrganization,
 }: props) => {
-  /**
-   * List of avialable organizations
-   */
   const [organizations, setOrganizations] = useState([]);
-  /**
-   * Form disabled or active flag.
-   * set to "false" when an organization is selected
-   */
-  const [disableSubmit, setdisableSubmit] = useState<boolean>(true);
+  //Form disabled or active flag, set to "false" when an organization is selected
+  const [disableSubmit, setDisableSubmit] = useState<boolean>(true);
   const [askConfirmation, setAskConfirmation] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
+  // List of avialable organizations
   useEffect(() => {
-    // API call
     api
       .getOrganizationNames()
       .then(
@@ -150,12 +144,7 @@ const OrgLookup = ({
           message: string;
           organizations: Array<{ _id: string; name: string; __v: number }>;
         }) => {
-          let temp: any = [];
-
-          for (var i = 0; i < res.organizations.length; i++) {
-            temp.push(res.organizations[i].name);
-          }
-
+          let temp = res.organizations.map(org => org.name);
           setOrganizations([...temp]);
         }
       )
@@ -165,15 +154,19 @@ const OrgLookup = ({
       });
   }, []);
 
-  /**
-   * Function to create dropdown options from organizations array
-   */
-  const getOptions = () => {
-    // let organizations = ['a', 'baaa', 'aac'];
-    return organizations.map((org, i) => {
-      return <option key={i}>{org}</option>;
-    });
+  const handleOptionClick = (option: string) => {
+    setSelectedOrganization(option);
+    setSearchTerm(option);
+    setDisableSubmit(false);
+    setIsOpen(false);
   };
+
+  const toggleDropdown = () => setIsOpen(!isOpen);
+
+  // Filter organizations based on search term
+  const filteredOrganizations = organizations.filter(org =>
+    org.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   if (askConfirmation)
     return (
@@ -190,45 +183,67 @@ const OrgLookup = ({
           <div className="desc-title blue-text-dark">
             Enter your school/organization
           </div>
+          <div className="dropdown-container">
+            <div className="custom-dropdown">
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
+                  setIsOpen(true);
+                }}
+                onClick={toggleDropdown}
+                placeholder="Select an organization"
+                style={{
+                  border: 'none',
+                  outline: 'none',
+                  flex: 1,
+                  padding: '5px 10px',
+                  cursor: 'pointer'
+                }}
+              />
+              <span className="dropdown-icon" onClick={toggleDropdown}>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="16" 
+                  height="16" 
+                  fill="currentColor" 
+                  className="bi bi-caret-down-fill" 
+                  viewBox="0 0 16 16"
+                > 
+                  <path d="M3.5 6h9l-4.5 4.5L3.5 6z"/>
+                </svg>
+              </span>
+      
+              {isOpen && (
+                <ul className="dropdown-menu">
+                  {filteredOrganizations.map((org, index) => (
+                    <li key={index} onClick={() => handleOptionClick(org)}>
+                      {org}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
 
-          <input
-            autoFocus
-            placeholder={'Choose Orgnaization'}
-            list="organizations"
-            value={selectedOrganization}
-            style={{
-              border: '1px solid #005395',
-              paddingLeft: '2.5%',
-              margin: '3% 0 5%',
-            }}
-            onInput={(e) => {
-              let val = (e.target as any).value;
-
-              setdisableSubmit(val != '' ? false : true); // Make the submit button active
-
-              setSelectedOrganization(val); // Update the selected organization
-            }}
-          />
-          <datalist id="organizations">{getOptions()}</datalist>
-
-          <button
-            className="yellow-button"
-            disabled={disableSubmit}
-            onClick={(e) => {
-              e.preventDefault();
-              if (organizations.includes(selectedOrganization))
-                setAskConfirmation(true);
-              // API call
-              else {
-                alert(
-                  'Invalid Organization name! \nPlease select an organization from the dropdown list.'
-                );
-                setSelectedOrganization('');
-              }
-            }}
-          >
-            Next
-          </button>
+            <button
+              className="nextButton"
+              disabled={disableSubmit}
+              onClick={(e) => {
+                e.preventDefault();
+                if (organizations.includes(selectedOrganization))
+                  setAskConfirmation(true);
+                else {
+                  alert(
+                    'Invalid Organization name! \nPlease select an organization from the dropdown list.'
+                  );
+                  setSelectedOrganization('');
+                }
+              }}
+            >
+              Next
+            </button>
+          </div>
         </form>
       </>
     );
