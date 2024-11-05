@@ -33,6 +33,17 @@ const Logo = styled.a`
   z-index: 1;
 `;
 
+const LogoContainer = styled.div`
+  grid-column: 4 / span 4;
+  grid-row: 2 / span 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  z-index: 1;
+  margin-bottom: 20px;
+`;
+
 //Sets the desc centered to the left of the login card, also sets the text color and font
 //  contains media queries so that it will be stacked above the login card on smaller screens
 const Desc = styled.div`
@@ -134,6 +145,7 @@ export {
   Wrapper,
   Banner,
   Logo,
+  LogoContainer,
   Desc,
   LoginPOS,
   Button,

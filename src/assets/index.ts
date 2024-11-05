@@ -38,7 +38,7 @@ import classes_background from './backgrounds/bg-classes.svg';
 import signup_background from './backgrounds/bg-signup.png';
 
 import bannerlogo from './images/unitedWayLogoShadow.png';
-
+import logo from './images/UnitedWayLogo.png'
 export {
   loader,
   spinner,
@@ -63,6 +63,7 @@ export {
   buttonX,
   checkButton,
   IconGear,
+  logo,
   Home,
   Game,
   BackPack,
