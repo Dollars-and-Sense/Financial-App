@@ -2,7 +2,7 @@ import React, { useState, useEffect, FC, ReactElement } from 'react';
 const evalOptions: Array<any> = [
   {
     name: 'balance',
-    show: 'Total Montly Savings: ',
+    show: 'Total Monthly Savings: ',
     pos_message: [
       'Good Job! Your total monthly expense was less than your income.',
       'Good Job! You saved some of your income. But your saving is still not in the recommended range.',
