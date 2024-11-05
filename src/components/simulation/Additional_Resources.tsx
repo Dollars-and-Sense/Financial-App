@@ -64,7 +64,7 @@ const Additional_Resources: React.FC<{ setStage: setStageType }> = ({
     e.preventDefault();
     window
       .open(
-        'https://www.capitalone.com/learn-grow/business-resources/',
+        'https://www.capitalone.com/learn-grow/money-management/',
         '_blank'
       )
       .focus();
@@ -86,8 +86,8 @@ const Additional_Resources: React.FC<{ setStage: setStageType }> = ({
         className="ta-center"
         style={{ fontSize: '1.2em', marginBottom: '1rem' }}
       >
-        Let's look at some additional resources to help you learn more about
-        personal and business finance
+        Let's spend the next 5 minutes looking at some additional resources to help you learn more about
+        personal and business finance.
       </div>
       {continueType == 1 && (
         <button
