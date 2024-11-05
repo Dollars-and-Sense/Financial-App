@@ -217,6 +217,12 @@ const RunSimulation = (props: Props): JSX.Element => {
             )}
             {simStage === 'Booth-Selection' && (
               <div>
+                <h6 className="instructionsHeading">
+                  Click on each category to make choices about how to spend your money.
+                </h6>
+                <p className="instructionsParagraph">
+                  You can only visit each category once.
+                </p>
                 <UserInfo>
                   Remaining Income:{' '}
                   {myCareer.afterTaxMontlySalary
