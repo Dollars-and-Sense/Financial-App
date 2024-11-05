@@ -19,10 +19,10 @@ const Startpage = ({
     <>
       {loggedin ? (
         <Wrapper>
-          <LogoContainer>
-          <img src={logo} alt="United Way Logo" style={{ width: '100px', height: 'auto' }} />
-          </LogoContainer>
           <Desc>
+            <LogoContainer>
+              <img src={logo} alt="United Way Logo" style={{ width: '150px', height: 'auto' }} />
+            </LogoContainer>
             <div className="desc-title">Dollars & $ense Reality Fair</div>
             <DescText>
               The United Way of Northeast Louisiana Dollars & $ense Reality Fair is a financial
