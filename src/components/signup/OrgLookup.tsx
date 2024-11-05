@@ -134,7 +134,7 @@ const OrgLookup = ({
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
-  //List of avialable organizations
+  // List of avialable organizations
   useEffect(() => {
     api
       .getOrganizationNames()
