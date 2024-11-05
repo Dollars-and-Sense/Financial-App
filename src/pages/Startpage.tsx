@@ -1,6 +1,6 @@
-import { bannerlogo, capitalOneLogo } from 'assets';
+import { bannerlogo } from 'assets';
 import React from 'react';
-import { Wrapper, Desc, DescText, LogoContainer,Logo } from 'style/home';
+import { Wrapper, Desc, DescText, LogoContainer} from 'style/home';
 
 /*
  * Start page of the entire site, where users will get an overview of what this app is about, and where they will
@@ -17,10 +17,9 @@ const Startpage = ({
 }): JSX.Element => {
   return (
     <>
-      {true ? (
+      {loggedin ? (
         <Wrapper>
           <LogoContainer>
-          <img src={capitalOneLogo} alt="Capital One Logo" style={{ width: '100px', height: 'auto' }} />
           <img src={bannerlogo} alt="United Way Logo" style={{ width: '100px', height: 'auto' }} />
           </LogoContainer>
           <Desc>

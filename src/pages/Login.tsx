@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { signup_background as LoginBg } from 'assets';
 import api from 'api';
-import {capitalOneLogo} from 'assets'
+
 /**
  * This component contains the Login form shown in "/login" page
  * @param loginUser A function passed down by App.tsx to set the token in the browser and update the loggedin state of the App
@@ -37,6 +37,7 @@ const Login = ({ loginUser }: { loginUser: any }): JSX.Element => {
     <div style={{ height: '100vh', display: 'flex' }}>
       <div className="login-form-container">
         <img src={LoginBg} style={{ height: '100%' }} />
+        
         <form
           className="auth-form"
           onSubmit={(e: any) => {
@@ -45,7 +46,6 @@ const Login = ({ loginUser }: { loginUser: any }): JSX.Element => {
           }}
         >
           {/* sets the users email to the input value */}
-          
           <input
             className="login-input"
             placeholder={'Username or Email'}

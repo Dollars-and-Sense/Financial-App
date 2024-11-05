@@ -53,7 +53,7 @@ const App = () => {
   const location = useLocation();
 
   const [state, setState] = useState<stateType>({
-    loggedin: true,
+    loggedin: false,
     tokenChecked: false,
     showNav: true,
     user: initUser,
