@@ -55,15 +55,18 @@ const BoothSelect = ({
     // }
   }
 
+  const tooltipTextComplete = "You can't revisit this category.";
+  const boothHasBeenVisited = (i: number) => visitedBooths.includes(i + 1)
+
   if (!boothsInfo) return null;
   else
     return (
       <Grid cols="1">
         {boothsInfo.map((info: any, i: number) => (
-          <div key={info.id}>
+          <div key={info.id} className='tooltip'>
             <button
               className={`customButton boothOption ${
-                visitedBooths.includes(i + 1) ? 'disabledBooth' : ''
+                boothHasBeenVisited(i) ? 'disabledBooth' : ''
               }`}
               onClick={(e) => {
                 if (!visitedBooths.includes(i + 1)) {
@@ -75,6 +78,10 @@ const BoothSelect = ({
               <img src={BoothIcons[i + 1]} className="boothIcon" />
               <p className={info.id}>{info.category}</p>
             </button>
+            { boothHasBeenVisited(i) && <span className='tooltiptext'>
+              {tooltipTextComplete}
+              </span>
+            }
           </div>
         ))}
       </Grid>

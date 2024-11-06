@@ -12,18 +12,40 @@ const Green = styled.span`
   font-size: 16pt;
 `;
 
+const Table = styled.table`
+`;
+
+const TableRow = styled.tr`
+  border-bottom: none;
+`;
+
+const TableData = styled.td`
+  padding: 0 0;
+`
+
+const formatDollars = (dollars: number) => {
+  // Display commas in numbers and also show cents (even if 0.00)
+  // Resource: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#options
+  const options = {  minimumFractionDigits: 2, maximumFractionDigits: 2}
+  const locale = 'en-US';
+  return Intl.NumberFormat(locale, options).format(dollars);
+}
+
 const JobSummary = ({ career }: { career: career }): JSX.Element => {
-  const anSal = career.annual_salary.toFixed(2);
-  const grossSal = career.annual_salary / 12;
-  const fedTax = career.federalTax.toFixed(2);
-  const socialS = career.socialSecurity.toFixed(2);
-  const medicare = career.medicare.toFixed(2);
-  const sTax = career.stateTax.toFixed(2);
-  const insurance = career.insurance.toFixed(2);
+
+  const anSal = formatDollars(career.annual_salary);
+  const grossSal = formatDollars(career.annual_salary / 12);
+  const fedTax = formatDollars(career.federalTax);
+  const socialS = formatDollars(career.socialSecurity);
+  const medicare = formatDollars(career.medicare);
+  const sTax = formatDollars(career.stateTax);
+  const insurance = formatDollars(career.insurance);
+  const credit = formatDollars(career.credit);
+  const training = formatDollars(career.training);
   const edu = career.education;
   const position = career.position;
 
-  const netMonth = career.afterTaxMontlySalary.toFixed(2);
+  const netMonth = formatDollars(career.afterTaxMontlySalary);
 
   const vowel = new Set(['A', 'E', 'I', 'O', 'U']);
 
@@ -49,33 +71,40 @@ const JobSummary = ({ career }: { career: career }): JSX.Element => {
       <br />
       <br />
       This means your gross monthly salary is{' '}
-      <Green>${grossSal.toFixed(2)}</Green>
+      <Green>${grossSal}</Green>.
       <br />
       <br />
       You will have to pay the following taxes:
-      <ul>
-        <li>
-          Federal Taxes: <Red>${fedTax}</Red>
-        </li>
-        <li>
-          Social Security: <Red>${socialS}</Red>
-        </li>
-        <li>
-          Medicare: <Red>${medicare}</Red>
-        </li>
-        <li>
-          State Tax: <Red>${sTax}</Red>
-        </li>
-        <li>
-          Insurance: <Red>${insurance}</Red>
-        </li>
-        <li>
-          Credit Card Debt: <Red>${career.credit}</Red>
-        </li>
-        <li>
-          Continuing Education/Training: <Red>${career.training}</Red>
-        </li>
-      </ul>
+      <Table><tbody>
+        <TableRow>
+          <TableData>Federal Taxes:</TableData>
+          <TableData><Red>${fedTax}</Red></TableData>
+        </TableRow>
+        <TableRow>
+          <TableData>Social Security:</TableData>
+          <TableData><Red>${socialS}</Red></TableData>
+        </TableRow>
+        <TableRow>
+          <TableData>Medicare:</TableData>
+          <TableData><Red>${medicare}</Red></TableData>
+        </TableRow>
+        <TableRow>
+          <TableData>State Tax:</TableData>
+          <TableData><Red>${sTax}</Red></TableData>
+        </TableRow>
+        <TableRow>
+          <TableData>Insurance:</TableData>
+          <TableData><Red>${insurance}</Red></TableData>
+        </TableRow>
+        <TableRow>
+          <TableData>Credit Card Debt:</TableData>
+          <TableData><Red>${credit}</Red></TableData>
+        </TableRow>
+        <TableRow>
+          <TableData>Continuing Education/Training:</TableData>
+          <TableData><Red>${training}</Red></TableData>
+        </TableRow>
+      </tbody></Table>
       <br />
       Which means your net monthly income is <Green>${netMonth}!</Green>
     </div>
