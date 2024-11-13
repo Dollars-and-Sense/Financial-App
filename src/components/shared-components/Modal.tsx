@@ -88,6 +88,39 @@ const Modal = ({ text, close }: { text: any; close: any }): JSX.Element => (
   </Wrapper>
 );
 
+const ConfirmModal = ({ text, onConfirm, onCancel }: any) => (
+  <Wrapper>
+    <Modall>
+      <Header>
+        <Btn
+          style={{ float: 'right' }}
+          className="bt right-corner"
+          onClick={onCancel}
+        >
+          {' '}
+          &nbsp;X&nbsp;{' '}
+        </Btn>
+      </Header>
+      <div>
+        <div
+          style={{ minHeight: '5em', padding: '2em' }}
+          className="blue-txt bold txt-md"
+        >
+          <h5>{text}</h5>
+        </div>
+        <div className="modal-footer">
+          <button className="btn hoverr full cancel-btn" onClick={onCancel}>
+            No
+          </button>
+          <button className="btn hoverr full confirm-btn" onClick={onConfirm}>
+            Yes
+          </button>
+        </div>
+      </div>
+    </Modall>
+  </Wrapper>
+);
+
 const InfoModal = ({ text, close, img }: any) => (
   <Wrapper>
     <Modall>
@@ -134,4 +167,4 @@ const CustomModal = ({ header, body, actions, close }: any) => {
     </Wrapper>
   );
 };
-export { Modal, InfoModal, CustomModal };
+export { Modal, ConfirmModal, InfoModal, CustomModal };

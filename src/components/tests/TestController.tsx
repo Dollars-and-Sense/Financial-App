@@ -4,7 +4,7 @@ import { TestLayout } from 'components';
 import api from 'api';
 import useStateCallback from 'utils/useStateCallback';
 import TestInfoCard from './TestInfoCard';
-
+import { ConfirmModal } from '../../components/shared-components/Modal'
 interface Props {
   stage: string;
   setStage: Function;
@@ -109,6 +109,8 @@ const TestController = (props: Props): JSX.Element => {
   } = useBackendConnection(props.stage);
 
   const [answered, setAnswered] = useState('fade-out'); //for transition
+  const [showModal, setShowModal] = useState(false);
+
 
   /**
    * Called by Save when answer selected, updates states, saves user selection
@@ -132,13 +134,17 @@ const TestController = (props: Props): JSX.Element => {
   };
 
   const nextStageConfirmation = () => {
-    let confirmed = window.confirm(
-      "Are you sure you want to move to the next stage? \nYou won't be able to change your answers."
-    );
-    if (confirmed) {
-      if (props.stage == 'pretest') props.setStage('simulation');
-      else props.setStage('completed');
-    }
+    setShowModal(true);
+  };
+
+  const handleConfirm = () => {
+    if (props.stage === 'pretest') props.setStage('simulation');
+    else props.setStage('completed');
+    setShowModal(false);
+  };
+
+  const handleCancel = () => {
+    setShowModal(false);
   };
 
   /**
@@ -185,7 +191,18 @@ const TestController = (props: Props): JSX.Element => {
       <TestInfoCard stage={props.stage} setShowInfoCard={setShowInfoCard} />
     );
   } else {
-    return <TestLayout nav={nav} save={Save} data={data} />;
+    return (
+      <>
+    <TestLayout nav={nav} save={Save} data={data} />
+      {showModal && (
+        <ConfirmModal
+          text="Are you sure you want to move to the next stage? You won't be able to change your answers."
+          onConfirm={handleConfirm}
+          onCancel={handleCancel}
+        />
+      )}
+       </>
+    );
   }
 };
 
