@@ -224,8 +224,8 @@ const RunSimulation = (props: Props): JSX.Element => {
                   You can only visit each category once.
                 </p>
                 <UserInfo>
-                  Remaining Income:{' '}
-                  {myCareer.afterTaxMontlySalary
+                  Remaining Monthly Income:{' '}
+                  ${myCareer.afterTaxMontlySalary
                     ? currentBalance.toFixed(2)
                     : ''}
                 </UserInfo>

@@ -147,7 +147,7 @@ const Booth = ({
             The Current Booth is {`${boothName}.`}
           </div>
         </Span>
-        <Info>Remaining Balance: {remainingBalance}</Info>
+        <Info>Remaining Monthly Balance: ${remainingBalance}</Info>
         <div
           style={{
             gridRow: '3/3',
