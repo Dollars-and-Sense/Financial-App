@@ -3,6 +3,7 @@ import React from 'react';
 import Header from './shared-components/Header';
 import Loader from './shared-components/Loader';
 import Navbar from './shared-components/Navbar';
+import Banner from './shared-components/Banner';
 
 import SettingItem from './settings/SettingItem';
 
@@ -37,6 +38,7 @@ export {
   Header,
   Loader,
   Navbar,
+  Banner,
   SettingItem,
   StudentDashboard,
   TeacherDashboard,

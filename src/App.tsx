@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import './style/App.css';
 import './style/animations.css';
-import { Navbar, Loader } from './components';
+import { Navbar, Loader, Banner } from './components';
 import {
   Setting,
   Simulation,
@@ -133,6 +133,7 @@ const App = () => {
               setState({ ...state, showNav: !state.showNav });
             }}
           />
+          <Banner message={state.user.type}/>
           <Suspense fallback={fallback()}>
             <Switch>
               {loginBasedRedirect()}
