@@ -216,10 +216,6 @@ const RunSimulation = (props: Props): JSX.Element => {
               </>
             )}
             {simStage === 'Booth-Selection' && (
-              /**
-               * TODO: Add more instructional details: "Choose a booth. 
-               * You can only visit each booth one time." 
-               */
               <div>
                 <h6 className="instructionsHeading">
                   Click on each category to make choices about how to spend your money.
