@@ -12,7 +12,7 @@ const Simulation_Finished: React.FC<{}> = () => {
     e.preventDefault();
     window
       .open(
-        'https://www.capitalone.com/learn-grow/business-resources/',
+        'https://www.capitalone.com/learn-grow/money-management/',
         '_blank'
       )
       .focus();
