@@ -98,7 +98,6 @@ const ConfirmModal = ({ text, onConfirm, onCancel }: any) => (
         maxWidth: "400px",
         textAlign: "center",
       }}
-
     >
       <div
         className="blue-text-dark desc-title"
