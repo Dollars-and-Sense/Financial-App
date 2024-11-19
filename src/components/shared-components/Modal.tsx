@@ -88,6 +88,47 @@ const Modal = ({ text, close }: { text: any; close: any }): JSX.Element => (
   </Wrapper>
 );
 
+const ConfirmModal = ({ text, onConfirm, onCancel }: any) => (
+  <Wrapper onClick={onCancel}>
+    <div
+      className="ui modal transition visible active"
+      id="customModal"
+      onClick={(e) => e.stopPropagation()}
+      style={{
+        maxWidth: "400px",
+        textAlign: "center",
+      }}
+    >
+      <div
+        className="blue-text-dark desc-title"
+        >
+        {text}
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "15px",
+          marginTop: "20px",
+        }}
+      >
+        <button
+          className="yellow-button"
+          onClick={onConfirm}
+        >
+          Yes
+        </button>
+        <button
+          className="yellow-button"
+          onClick={onCancel}
+        >
+          No
+        </button>
+      </div>
+    </div>
+  </Wrapper>
+);
+
 const InfoModal = ({ text, close, img }: any) => (
   <Wrapper>
     <Modall>
@@ -134,4 +175,4 @@ const CustomModal = ({ header, body, actions, close }: any) => {
     </Wrapper>
   );
 };
-export { Modal, InfoModal, CustomModal };
+export { Modal, ConfirmModal, InfoModal, CustomModal };
