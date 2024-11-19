@@ -89,35 +89,44 @@ const Modal = ({ text, close }: { text: any; close: any }): JSX.Element => (
 );
 
 const ConfirmModal = ({ text, onConfirm, onCancel }: any) => (
-  <Wrapper>
-    <Modall>
-      <Header>
-        <Btn
-          style={{ float: 'right' }}
-          className="bt right-corner"
+  <Wrapper onClick={onCancel}>
+    <div
+      className="ui modal transition visible active"
+      id="customModal"
+      onClick={(e) => e.stopPropagation()}
+      style={{
+        maxWidth: "400px",
+        textAlign: "center",
+      }}
+
+    >
+      <div
+        className="blue-text-dark desc-title"
+        >
+        {text}
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "15px",
+          marginTop: "20px",
+        }}
+      >
+        <button
+          className="yellow-button"
+          onClick={onConfirm}
+        >
+          Yes
+        </button>
+        <button
+          className="yellow-button"
           onClick={onCancel}
         >
-          {' '}
-          &nbsp;X&nbsp;{' '}
-        </Btn>
-      </Header>
-      <div>
-        <div
-          style={{ minHeight: '5em', padding: '2em' }}
-          className="blue-txt bold txt-md"
-        >
-          <h5>{text}</h5>
-        </div>
-        <div className="modal-footer">
-          <button className="btn hoverr full cancel-btn" onClick={onCancel}>
-            No
-          </button>
-          <button className="btn hoverr full confirm-btn" onClick={onConfirm}>
-            Yes
-          </button>
-        </div>
+          No
+        </button>
       </div>
-    </Modall>
+    </div>
   </Wrapper>
 );
 
