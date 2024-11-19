@@ -12,7 +12,7 @@ const Simulation_Finished: React.FC<{}> = () => {
     e.preventDefault();
     window
       .open(
-        'https://www.capitalone.com/learn-grow/business-resources/',
+        'https://www.capitalone.com/learn-grow/money-management/',
         '_blank'
       )
       .focus();
@@ -34,6 +34,10 @@ const Simulation_Finished: React.FC<{}> = () => {
         Thank you for taking this simulation. We hope that our application left
         you with a basic understanding of personal finances. Remember,
         maintaining a healthy financial life is an important skill.
+        <br/>
+        <a href="#" onClick={openResource} style={{ color: '#006666', textDecoration: 'underline' }}>
+          Explore More Resources
+        </a>
       </div>
     </Card>
   );
