@@ -45,7 +45,7 @@ const JobSummary = ({ career }: { career: career }): JSX.Element => {
   const edu = career.education;
   const position = career.position;
 
-  const netMonth = formatDollars(career.afterTaxMontlySalary);
+  const netMonth = formatDollars(career.afterTaxMonthlySalary);
 
   const vowel = new Set(['A', 'E', 'I', 'O', 'U']);
 
