@@ -142,7 +142,6 @@ const RunSimulation = (props: Props): JSX.Element => {
       .getJobDetail(jobname.replaceAll('/', '_')) // String needs to be fixed before sending to backend
       .then((occupation) => {
         const { annual_salary, training, credit, ...other_attr } = occupation;
-        const fed_rate = other_attr.federal_tax_rate_mo || 0.15
         const y: number = parseFloat((annual_salary / 12).toFixed(2)); // Monthly salary
         const career = {
           position: jobname,
