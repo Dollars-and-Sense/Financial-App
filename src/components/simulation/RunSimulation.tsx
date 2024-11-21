@@ -140,20 +140,21 @@ const RunSimulation = (props: Props): JSX.Element => {
   const getJobDetail = (jobname: string, setJobInBackend: boolean = false) => {
     api
       .getJobDetail(jobname.replaceAll('/', '_')) // String needs to be fixed before sending to backend
-      .then((occupation: career) => {
+      .then((occupation) => {
         const { annual_salary, training, credit, ...other_attr } = occupation;
-        const y: number = annual_salary / 12; // Monthly salary
+        const fed_rate = other_attr.federal_tax_rate_mo || 0.15
+        const y: number = parseFloat((annual_salary / 12).toFixed(2)); // Monthly salary
         const career = {
           position: jobname,
-          monthlySalary: parseFloat(y.toFixed(2)),
+          monthlySalary: y,
           annual_salary,
           hourlyRate: annual_salary / 52 / 40,
-          federalTax: y * (other_attr?.federal_tax_rate_mo || 0.15),
-          socialSecurity: y * (other_attr?.social_security_rate_mo || 0.06),
-          medicare: y * (other_attr?.medicare_rate_mo || 0.014),
-          stateTax: y * (other_attr?.state_tax_rate_mo || 0.033),
+          federalTax: y * (other_attr.federal_tax_rate_mo || 0.15),
+          socialSecurity: y * (other_attr.social_security_rate_mo || 0.06),
+          medicare: y * (other_attr.medicare_rate_mo || 0.014),
+          stateTax: y * (other_attr.state_tax_rate_mo || 0.033),
           insurance: y * 0.035,
-          education: other_attr?.education || "Bachelor's",
+          education: other_attr.education || "Bachelor's",
           training,
           credit,
           afterTaxMonthlySalary: 0
