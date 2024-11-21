@@ -39,7 +39,7 @@ export interface career {
   medicare: number;
   stateTax: number;
   education: string;
-  afterTaxMontlySalary: number;
+  afterTaxMonthlySalary: number;
   training: number;
   credit: number;
   insurance: number;
@@ -55,7 +55,7 @@ const tempCareer = {
   position: 'Carpenter',
   socialSecurity: 155.68800000000002,
   stateTax: 85.62840000000001,
-  afterTaxMontlySalary: 1190.235648,
+  afterTaxMonthlySalary: 1190.235648,
   training: 0,
   credit: 0,
   insurance: 0,
@@ -99,7 +99,7 @@ const RunSimulation = (props: Props): JSX.Element => {
    * Update Salary after a career is selected
    */
   useEffect(() => {
-    setCurrentBalance(myCareer.afterTaxMontlySalary);
+    setCurrentBalance(myCareer.afterTaxMonthlySalary);
   }, [myCareer]);
 
   useEffect(() => {
@@ -140,25 +140,34 @@ const RunSimulation = (props: Props): JSX.Element => {
   const getJobDetail = (jobname: string, setJobInBackend: boolean = false) => {
     api
       .getJobDetail(jobname.replaceAll('/', '_')) // String needs to be fixed before sending to backend
-      .then((occupation: career) => {
-        let y: number = occupation.annual_salary / 12; // Monthly salary
-        let { training, credit } = occupation;
-        setMyCareer({
+      .then((occupation) => {
+        const { annual_salary, training, credit, ...other_attr } = occupation;
+        const y: number = parseFloat((annual_salary / 12).toFixed(2)); // Monthly salary
+        const career = {
           position: jobname,
-          monthlySalary: parseFloat(y.toFixed(2)),
-          annual_salary: occupation.annual_salary,
-          hourlyRate: y / 160,
-          federalTax: y * 0.15,
-          socialSecurity: y * 0.06,
-          medicare: y * 0.014,
-          stateTax: y * 0.033,
+          monthlySalary: y,
+          annual_salary,
+          hourlyRate: annual_salary / 52 / 40,
+          federalTax: y * (other_attr.federal_tax_rate_mo || 0.15),
+          socialSecurity: y * (other_attr.social_security_rate_mo || 0.06),
+          medicare: y * (other_attr.medicare_rate_mo || 0.014),
+          stateTax: y * (other_attr.state_tax_rate_mo || 0.033),
           insurance: y * 0.035,
-          education: "Bachelor's",
+          education: other_attr.education || "Bachelor's",
           training,
           credit,
-          afterTaxMontlySalary:
-            y - y * (0.15 + 0.06 + 0.014 + 0.033 + 0.035) - training - credit,
-        });
+          afterTaxMonthlySalary: 0
+        };
+        career.afterTaxMonthlySalary =
+          career.monthlySalary -
+          career.federalTax -
+          career.socialSecurity -
+          career.medicare -
+          career.stateTax -
+          career.insurance -
+          career.training -
+          career.credit;
+        setMyCareer(career);
 
         setSimStage('Job-Selected'); // Change the state of "RunSimulation" component when donw
         if (setJobInBackend)
@@ -225,7 +234,7 @@ const RunSimulation = (props: Props): JSX.Element => {
                 </p>
                 <UserInfo>
                   Remaining Monthly Income:{' '}
-                  ${myCareer.afterTaxMontlySalary
+                  ${myCareer.afterTaxMonthlySalary
                     ? currentBalance.toFixed(2)
                     : ''}
                 </UserInfo>
